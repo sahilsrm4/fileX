@@ -1,0 +1,48 @@
+import os
+import list_file
+from report_gen import Report_Gen
+
+report = Report_Gen()
+
+def search_file(args):
+     file = None
+     path = None
+     if(len(args)==1):
+         file=args[0]
+         path=os.getcwd()
+     elif(len(args)==2):
+         file = args[0]
+         path = args[1]
+     search_result = list()
+     if not os.path.exists(path):
+         return []
+     file_dir= list_file.list_and_dir(path)
+     files = None
+     dir = None
+     if file_dir:
+         files = file_dir["files"]
+         dir = file_dir["dir"]
+         for f in files:
+             if file in f:
+                  search_result.append(os.path.join(path,f))
+         for d in dir:
+            result = search_file([file,os.path.join(path,d)])
+            search_result.extend(result)
+     return search_result
+
+def search_print_file(args):
+    result = search_file(args)
+    if(len(result)==0):
+        print("No such file exist")
+    else:
+        print("Search result :")
+        print(result)
+    return result
+
+if __name__ == "__main__":
+   result = search_file(["rocket.obj"])
+   if(len(result)==0):
+       print("No such file exist")
+   else:
+       print("Search Result")
+       print(result)
