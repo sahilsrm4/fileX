@@ -16,7 +16,7 @@ class Dir_Summary:
         try:
             
             if options:
-                if options[0] == "-r" or options == "--recursive":
+                if options[0] == "-r" or options[0] == "--recursive":
                    recursive = True
                 else:
                     raise exceptions.NotSupportedOption("Directory Summary",options[0])

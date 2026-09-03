@@ -64,7 +64,8 @@ def search_file(args:list=[],options:list=[]):
      except exceptions.PathLengthGreaterThan260 as e:
          # i have to handle this error so that i can search for bigger paths also for now i am returning an emptyh list
          return search_result
-         
+     except Exception as e:
+         print(e)
          
      return search_result
 
