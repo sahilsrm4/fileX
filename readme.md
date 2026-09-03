@@ -234,7 +234,7 @@ Searches for files by name or extension.
 ### Usage
 
 ```bash
-python fileX.py search <pattern/file> [directory]
+python fileX.py search <pattern/file> [directory] [-r | --recursive ]
 ```
 
 ### Arguments

@@ -39,7 +39,8 @@ def help(args:list = [],options:list=[]):
 
     print("\nsearch")
     print("  Search for files by name or extension.")
-    print("  Usage: python mytool.py search [pattern] <directory>")
+    print("  Usage: python mytool.py search [pattern] <directory> [-r | --recursive]")
+    print(" if -r or --recursive option is provided then functinality will search in child directories otherwise only search in the current directory or the provided directory")
     print("  Arguments: 1 or 2")
 
     print("\ncopyf")
