@@ -1,0 +1,85 @@
+{
+    "books": [
+        {
+            "book_id": "B001",
+            "title": "Python Basics",
+            "author": "XYZ",
+            "status": "AVAILABLE",
+            "borrowed_by": null
+        },
+        {
+            "book_id": "B002",
+            "title": "Clean Code",
+            "author": "ABC",
+            "status": "AVAILABLE",
+            "borrowed_by": null
+        },
+        {
+            "book_id": "B003",
+            "title": "Python Basics",
+            "author": "XYZ",
+            "status": "BORROWED",
+            "borrowed_by": "U001"
+        },
+        {
+            "book_id": "B004",
+            "title": "Harry Potter",
+            "author": "QWER",
+            "status": "AVAILABLE",
+            "borrowed_by": null
+        },
+        {
+            "book_id": "B005",
+            "title": "C++",
+            "author": "asdf",
+            "status": "AVAILABLE",
+            "borrowed_by": null
+        },
+        {
+            "book_id": "B006",
+            "title": "JAVA",
+            "author": "CVB",
+            "status": "BORROWED",
+            "borrowed_by": "U001"
+        },
+        {
+            "book_id": "B007",
+            "title": "Generative AI",
+            "author": "ZXY",
+            "status": "AVAILABLE",
+            "borrowed_by": null
+        }
+    ],
+    "users": [
+        {
+            "user_id": "U001",
+            "name": "Aman Sharma",
+            "borrowed_books": [
+                "B003",
+                "B006"
+            ]
+        }
+    ],
+    "borrowing_history": [
+        {
+            "book_id": "B001",
+            "borrower": "U001",
+            "action": "BORROW"
+        },
+        {
+            "book_id": "B003",
+            "borrower": "U001",
+            "action": "BORROW"
+        },
+        {
+            "book_id": "B006",
+            "borrower": "U001",
+            "action": "BORROW"
+        },
+        {
+            "book_id": "B001",
+            "borrower": "U001",
+            "action": "RETURN"
+        }
+    ]
+}
