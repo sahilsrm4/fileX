@@ -1,0 +1,27 @@
+{
+    "players": [
+        {
+            "id": 1,
+            "username": "Amol",
+            "password": "Amol@123"
+        },
+        {
+            "id": 2,
+            "username": "Asmit",
+            "password": "Asmit@123"
+        },
+        {
+            "id": 3,
+            "username": "Aman",
+            "password": "Aman"
+        },
+        {
+            "id": 4,
+            "username": "Aayush",
+            "password": "abc"
+        }
+    ],
+    "admin": {
+        "password": "Administrator@Quiz.123"
+    }
+}
