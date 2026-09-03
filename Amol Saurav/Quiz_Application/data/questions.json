@@ -1,0 +1,304 @@
+{
+  "categories": [
+    {
+      "name": "General Knowledge",
+      "questions": [
+        {
+          "id": 1,
+          "question": "What is the capital of France?",
+          "options": [
+            "London",
+            "Paris",
+            "Berlin",
+            "Madrid"
+          ],
+          "correct_answer": "Paris"
+        },
+        {
+          "id": 2,
+          "question": "Which planet is known as the Red Planet?",
+          "options": [
+            "Venus",
+            "Mars",
+            "Jupiter",
+            "Saturn"
+          ],
+          "correct_answer": "Mars"
+        },
+        {
+          "id": 3,
+          "question": "What is the largest ocean on Earth?",
+          "options": [
+            "Atlantic Ocean",
+            "Indian Ocean",
+            "Arctic Ocean",
+            "Pacific Ocean"
+          ],
+          "correct_answer": "Pacific Ocean"
+        },
+        {
+          "id": 4,
+          "question": "How many continents are there?",
+          "options": [
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "correct_answer": "7"
+        },
+        {
+          "id": 5,
+          "question": "What is the smallest country in the world?",
+          "options": [
+            "Monaco",
+            "Vatican City",
+            "San Marino",
+            "Liechtenstein"
+          ],
+          "correct_answer": "Vatican City"
+        }
+      ]
+    },
+    {
+      "name": "Science",
+      "questions": [
+        {
+          "id": 6,
+          "question": "What is the chemical symbol for Gold?",
+          "options": [
+            "Go",
+            "Gd",
+            "Au",
+            "Ag"
+          ],
+          "correct_answer": "Au"
+        },
+        {
+          "id": 7,
+          "question": "What is the speed of light?",
+          "options": [
+            "300,000 m/s",
+            "150,000 m/s",
+            "450,000 m/s",
+            "200,000 m/s"
+          ],
+          "correct_answer": "300,000 m/s"
+        },
+        {
+          "id": 8,
+          "question": "What is the powerhouse of the cell?",
+          "options": [
+            "Nucleus",
+            "Ribosome",
+            "Mitochondria",
+            "Chloroplast"
+          ],
+          "correct_answer": "Mitochondria"
+        },
+        {
+          "id": 9,
+          "question": "Which element has the atomic number 1?",
+          "options": [
+            "Helium",
+            "Oxygen",
+            "Hydrogen",
+            "Carbon"
+          ],
+          "correct_answer": "Hydrogen"
+        },
+        {
+          "id": 10,
+          "question": "What is the formula for photosynthesis?",
+          "options": [
+            "CO2 + H2O + Light \u00e2\u2020\u2019 C6H12O6 + O2",
+            "O2 + H2O \u00e2\u2020\u2019 CO2 + C6H12O6",
+            "C6H12O6 + O2 \u00e2\u2020\u2019 CO2 + H2O",
+            "CO2 + O2 \u00e2\u2020\u2019 C6H12O6 + H2O"
+          ],
+          "correct_answer": "CO2 + H2O + Light \u00e2\u2020\u2019 C6H12O6 + O2"
+        }
+      ]
+    },
+    {
+      "name": "History",
+      "questions": [
+        {
+          "id": 11,
+          "question": "In what year did World War II end?",
+          "options": [
+            "1943",
+            "1944",
+            "1945",
+            "1946"
+          ],
+          "correct_answer": "1945"
+        },
+        {
+          "id": 12,
+          "question": "Who was the first President of the United States?",
+          "options": [
+            "Thomas Jefferson",
+            "George Washington",
+            "John Adams",
+            "James Madison"
+          ],
+          "correct_answer": "George Washington"
+        },
+        {
+          "id": 13,
+          "question": "In which year did the Titanic sink?",
+          "options": [
+            "1910",
+            "1911",
+            "1912",
+            "1913"
+          ],
+          "correct_answer": "1912"
+        },
+        {
+          "id": 14,
+          "question": "Who invented the printing press?",
+          "options": [
+            "Leonardo da Vinci",
+            "Johannes Gutenberg",
+            "Galileo Galilei",
+            "Isaac Newton"
+          ],
+          "correct_answer": "Johannes Gutenberg"
+        },
+        {
+          "id": 15,
+          "question": "Which empire built the Great Wall of China?",
+          "options": [
+            "Qin Dynasty",
+            "Ming Dynasty",
+            "Han Dynasty",
+            "Tang Dynasty"
+          ],
+          "correct_answer": "Qin Dynasty"
+        }
+      ]
+    },
+    {
+      "name": "Technology",
+      "questions": [
+        {
+          "id": 16,
+          "question": "Who is known as the father of computers?",
+          "options": [
+            "Alan Turing",
+            "Charles Babbage",
+            "Steve Jobs",
+            "Bill Gates"
+          ],
+          "correct_answer": "Charles Babbage"
+        },
+        {
+          "id": 17,
+          "question": "What does HTML stand for?",
+          "options": [
+            "Hyper Text Markup Language",
+            "High Tech Modern Language",
+            "Home Tool Markup Language",
+            "Hyperlinks and Text Markup Language"
+          ],
+          "correct_answer": "Hyper Text Markup Language"
+        },
+        {
+          "id": 18,
+          "question": "In what year was the first iPhone released?",
+          "options": [
+            "2005",
+            "2006",
+            "2007",
+            "2008"
+          ],
+          "correct_answer": "2007"
+        },
+        {
+          "id": 19,
+          "question": "What does API stand for?",
+          "options": [
+            "Application Programming Interface",
+            "Advanced Programming Integration",
+            "Application Process Interface",
+            "Automated Programming Interface"
+          ],
+          "correct_answer": "Application Programming Interface"
+        },
+        {
+          "id": 20,
+          "question": "Which programming language is known for web development?",
+          "options": [
+            "C++",
+            "Python",
+            "JavaScript",
+            "Java"
+          ],
+          "correct_answer": "JavaScript"
+        }
+      ]
+    },
+    {
+      "name": "Sports",
+      "questions": [
+        {
+          "id": 21,
+          "question": "How many players are there in a cricket team?",
+          "options": [
+            "9",
+            "10",
+            "11",
+            "12"
+          ],
+          "correct_answer": "11"
+        },
+        {
+          "id": 22,
+          "question": "In which country is the Wimbledon tennis tournament held?",
+          "options": [
+            "United States",
+            "France",
+            "United Kingdom",
+            "Australia"
+          ],
+          "correct_answer": "United Kingdom"
+        },
+        {
+          "id": 23,
+          "question": "How many points is a touchdown worth in American football?",
+          "options": [
+            "3",
+            "6",
+            "7",
+            "10"
+          ],
+          "correct_answer": "6"
+        },
+        {
+          "id": 24,
+          "question": "Which sport is known as 'The Beautiful Game'?",
+          "options": [
+            "Tennis",
+            "Basketball",
+            "Football (Soccer)",
+            "Cricket"
+          ],
+          "correct_answer": "Football (Soccer)"
+        },
+        {
+          "id": 25,
+          "question": "How many players are there on a basketball team?",
+          "options": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "correct_answer": "5"
+        }
+      ]
+    }
+  ]
+}
