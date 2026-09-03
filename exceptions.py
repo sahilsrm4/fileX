@@ -1,3 +1,7 @@
+"""
+This file contains all the custom errors and exceptions.
+
+"""
 class PathNotExist(Exception):
     def __init__(self,path,*args):
           self.path = path
