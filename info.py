@@ -25,7 +25,7 @@ def file_info(args:list,options:list):
         result = search_file.search_file([file,path])
     
         if not len(result):
-             raise exceptions.FileNotExist(file,path)
+             raise exceptions.FileNotExist(file)
         
         file_path = None
     
