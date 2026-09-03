@@ -2,9 +2,14 @@ import os
 import datetime
 import exceptions
 
+
+
+# Report Generation class will create only one instance so that each functionality can put log in the same file
+
 class Report_Gen:
     _instance = None
     _inialized = False
+    
     def __new__(cls):
         if cls._instance is None:
             cls._instance = super().__new__(cls)
