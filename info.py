@@ -6,7 +6,7 @@ from report_gen import Report_Gen
 
 report = Report_Gen()
 
-def file_info(args):
+def file_info(args:list,options:list):
     report.write_log(f"Finding the information of the file{args[0]}\n")
     file = None
     path = None

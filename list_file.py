@@ -5,7 +5,7 @@ from report_gen import Report_Gen
 report = Report_Gen()
  
 
-def list_files(args):
+def list_files(args:list,options:list):
     path = None
     try:
       
@@ -58,9 +58,9 @@ def list_and_dir(path:str=os.getcwd()):
       for name in os.listdir(path):
           full_path = os.path.join(path,name)
           if os.path.isfile(full_path):
-              files.append(name)
+              files.append(full_path)
           else:
-              dir.append(name)
+              dir.append(full_path)
 
       return {"files":files,"dir":dir}
     

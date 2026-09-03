@@ -15,7 +15,7 @@ search_f = search_file.search_print_file
 copy_f = copy_file.copy_file
 rename_f = rename_file.rename_file
 
-def help(args:list = []):
+def help(args:list = [],options:list=[]):
     print("\nCommand-Line File Automation Utility")
     print("=" * 45)
 
@@ -28,7 +28,8 @@ def help(args:list = []):
 
     print("\ndirs")
     print("  Generate a summary of a directory.")
-    print("  Usage: python mytool.py dirs [directory]")
+    print("  Usage: python mytool.py dirs [directory] [ -r | --recursive]")
+    print("-r or --recursive will also summarize child directories")
     print("  Arguments: 0 or 1")
 
     print("\ninfo")
@@ -38,7 +39,7 @@ def help(args:list = []):
 
     print("\nsearch")
     print("  Search for files by name or extension.")
-    print("  Usage: python mytool.py search <directory> [pattern]")
+    print("  Usage: python mytool.py search [pattern] <directory>")
     print("  Arguments: 1 or 2")
 
     print("\ncopyf")
@@ -56,7 +57,18 @@ def help(args:list = []):
     print("  Usage: python mytool.py help")
     print("  Arguments: 0")
 
-
+def arg_and_opt(args:list|None):
+   arguments = list()
+   options = list()
+   if not args:
+      return arguments,options
+   for arg in args:
+      if arg.startswith("-") or arg.startswith("--"):
+         options.append(arg)
+      else:
+         arguments.append(arg)
+      
+   return arguments,options
 
 command_to_fun = dict()
 # the list will contain at 0th index the function mapped to command ,at 1st index number of arg , 2nd index number of argument also possible 
@@ -89,11 +101,13 @@ if __name__ == "__main__":
           sys.exit()
     
        fn = ls[0]
-       number_of_arg = len(sys.argv[2:])
-    
+       arguments,options = arg_and_opt(sys.argv[2:])
+       number_of_arg = len(arguments)
+       
        if(ls[1] == number_of_arg or ls[2] == number_of_arg):
             report.write_log(f"Calling the functionality {fn.__name__}\n")
-            result = fn(sys.argv[2:])
+            report.write_log(f"Arguments = {arguments}\nOptions ={options}\n")
+            result = fn(arguments,options)
             report.write_log(f"Data returned by the fucntionality {fn.__name__} is {result}")
             
        else:

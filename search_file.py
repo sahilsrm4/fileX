@@ -5,42 +5,54 @@ from report_gen import Report_Gen
 
 report = Report_Gen()
 
-def search_file(args):
+def search_file(args:list=[],options:list=[]):
      file = None
      path = None
+     try:
+        if(len(args)==1):
+            file=args[0]
+            path=os.getcwd()
+        elif(len(args)==2):
+            file = args[0]
+            path = args[1]
+   
+        search_result = list()
+   
+        if len(path) > 260:
+            raise exceptions.PathLengthGreaterThan260
+        
+        if not os.path.exists(path):
+            raise exceptions.PathNotExist(path)
+        
+        file_dir= list_file.list_and_dir(path)
+   
+        files = None
+        dir = None
+   
+        if file_dir:
+            files = file_dir["files"]
+            dir = file_dir["dir"]
+   
+            for f in files:
+                if file in f:
+                     search_result.append(f)
+   
+            for d in dir:
+               result = search_file([file, d ],options)
+               search_result.extend(result)
 
-     if(len(args)==1):
-         file=args[0]
-         path=os.getcwd()
-     elif(len(args)==2):
-         file = args[0]
-         path = args[1]
+     except exceptions.PathNotExist as e:
+         print(e)
+         report.write_log(e)
 
-     search_result = list()
-
-     if not os.path.exists(path):
+     except exceptions.PathLengthGreaterThan260 as e:
+         # i have to handle this error so that i can search for bigger paths also for now i am returning an emptyh list
          return []
-     
-     file_dir= list_file.list_and_dir(path)
-
-     files = None
-     dir = None
-
-     if file_dir:
-         files = file_dir["files"]
-         dir = file_dir["dir"]
-
-         for f in files:
-             if file in f:
-                  search_result.append(os.path.join(path,f))
-
-         for d in dir:
-            result = search_file([file,os.path.join(path,d)])
-            search_result.extend(result)
-
+         
+         
      return search_result
 
-def search_print_file(args):
+def search_print_file(args:list=[],options:list=[]):
     try:
       result = search_file(args)
       

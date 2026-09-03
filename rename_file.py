@@ -4,7 +4,7 @@ from report_gen import Report_Gen
 
 report = Report_Gen()
 
-def rename_file(args):
+def rename_file(args:list,options:list):
    src = args[0]
    dest = args[1]
    try:

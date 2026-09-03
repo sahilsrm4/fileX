@@ -5,7 +5,7 @@ from report_gen import Report_Gen
 
 report = Report_Gen()
 
-def copy_file(args:list):
+def copy_file(args:list,options:list):
     src = args[0]
     dest = args[1]
     report.write_log(f"Copying {src} to {dest}\n")

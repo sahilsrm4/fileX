@@ -80,3 +80,18 @@ class NotString(Exception):
           self.message = message
      def __str__(self):
           return f"Not string{self.message}"
+
+class NotSupportedOption(Exception):
+     def __init__(self,function_name,option,*args):
+          self.function_name = function_name
+          self.option = option
+          super().__init__(*args)
+     def __str__(self):
+          return f"{self.option} is not supported by {self.function_name}"
+
+class PathLengthGreaterThan260(Exception):
+     def __init__(self, *args):
+          super().__init__(*args)
+     
+     def __str__(self):
+          return "Path length is greater than 260 characters"

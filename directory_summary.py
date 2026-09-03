@@ -6,13 +6,21 @@ report = Report_Gen()
 
 class Dir_Summary:
    child_number = 0
-   def dir_summary(self,args:list) :
+   def dir_summary(self,args:list=[],options:list=[]) :
+        recursive = False
+
         if(len(args)==0):
             path = os.getcwd()
         else:
             path = args[0]
         try:
-
+            
+            if options:
+                if options[0] == "-r" or options == "--recursive":
+                   recursive = True
+                else:
+                    raise exceptions.NotSupportedOption("Directory Summary",options[0])
+                
             if not os.path.exists(path):
                  raise exceptions.PathNotExist(path)
             
@@ -38,7 +46,17 @@ class Dir_Summary:
                     print(name)
 
                 else:
-                    self.dir_summary([full_path]) # we passed a list since the function accepts the list
+
+                    if recursive:
+                       
+                       self.dir_summary([full_path],options) # we passed a list since the function accepts the list
+
+                    else:
+                        for i in range(self.child_number*2):
+                          print(" ",end="")
+
+                        print("|__",end="")
+                        print(name)
 
                 self.child_number -=1
 
