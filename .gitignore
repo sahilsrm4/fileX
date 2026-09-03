@@ -1,0 +1,5 @@
+.env
+.vscode/
+log_folder/
+*.log
+__pycache__/
