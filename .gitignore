@@ -3,3 +3,9 @@
 log_folder/
 *.log
 __pycache__/
+build/
+dist/
+errors/
+test/
+new_directory/
+dist/
