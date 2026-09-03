@@ -122,7 +122,7 @@ if __name__ == "__main__":
    except exceptions.NoCommand as e:
       print(e)
       help()
-      report.write_log(e.__str__+"\n")
+      report.write_log(e.__str__()+"\n")
 
    except exceptions.InvalidCommand as e:
       print(e)

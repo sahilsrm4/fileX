@@ -61,7 +61,8 @@ def search_print_file(args:list=[],options:list=[]):
       
       else:
         print("Search result :")
-        print(result)
+        for r in result:
+            print(r)
         return result
     
     except Exception as e:

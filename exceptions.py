@@ -57,13 +57,13 @@ class ArgumentError(Exception):
           return f"{self.command} require {self.required_arg} but only {self.provided_arg} is provided"
      
 class FileNotExist(Exception):
-     def __init__(self,file,path,*args):
+     def __init__(self,file,*args):
           super().__init__(*args)
           self.file = file
-          self.path = path
+           
      
      def __str__(self):
-          return f"{self.file} doesn't exist in the folder {self.path}"
+          return f"{self.file} doesn't exist in this folder"
      
 class ExactFileNotExist(Exception):
      def __init__(self,file,matching_result:list, *args):
