@@ -1,4 +1,4 @@
 
-with open("filex.py","r") as f:
-    content = f.read()
-    print(content)
+import os
+
+print(os.environ.get("gemini_api_key"))

@@ -1,10 +1,13 @@
 from google import genai
 import json
+import os
 import sys
+
 sys.path.append("d:\WatchGuard\command-line-file-utility")
 
 import list_file
 
+gemini_api_key = os.environ.get("gemini_api_key")
 def read_file(args):
       path = args[0]
       print(path)
@@ -27,7 +30,7 @@ tool_calling_protocol = 'To call a tool use the format tool_call={"tool":"tool_n
 final_response = str()
 
 
-client = genai.Client(api_key="***REMOVED***")
+client = genai.Client(api_key=gemini_api_key)
 
 response = client.models.generate_content(
     model= "gemini-3.7-flash",
