@@ -1,0 +1,2 @@
+we have to build a data structure which can store response of every tool like directory summary , list files, file information 
+so that we can print it directly from main file and also pass it to ai_application

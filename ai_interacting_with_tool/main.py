@@ -8,6 +8,7 @@ sys.path.append("d:\WatchGuard\command-line-file-utility")
 import list_file
 
 gemini_api_key = os.environ.get("gemini_api_key")
+
 def read_file(args):
       path = args[0]
       print(path)
