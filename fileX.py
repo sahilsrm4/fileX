@@ -140,7 +140,8 @@ if __name__ == "__main__":
             report.write_log(f"Calling the functionality {fn.__name__}\n")
             report.write_log(f"Arguments = {arguments}\nOptions ={options}\n")
             result = fn(arguments,options)
-            report.write_log(f"Data returned by the fucntionality {fn.__name__} is {result}")
+            print(result)
+            report.write_log(f"Data returned by the fucntionality {fn.__name__} is-\n{result}")
          
        else:
           if(ls[1] == ls[2]):

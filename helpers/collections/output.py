@@ -1,14 +1,21 @@
-class Output():
+class Output:
     def __init__(self):
         self.output_list = []
-    
-    def write(self,data:str):
-        if "\n" in data:
-            data_list = data.split("\n")
-            self.output_list.extend(data_list)
+
+    def write(self, data: object):
+        data_str = str(data)
+
+        if not data_str:
+            return
+
+        lines = data_str.split("\n")
+
+        if self.output_list:
+            self.output_list[-1] += lines[0]
         else:
-            self.output_list.append(data)
-    
+            self.output_list.append(lines[0])
+
+        self.output_list.extend(lines[1:])
+
     def __str__(self):
-        output_for_print = "\n".join(self.output_list)
-        return output_for_print
+        return "\n".join(self.output_list)

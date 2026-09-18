@@ -2,6 +2,7 @@ import shutil
 import os
 import exceptions
 from report_gen import Report_Gen
+from helpers.collections.output import Output
 
 report = Report_Gen()
 
@@ -12,6 +13,7 @@ def copy_file(args:list,options:list):
     """
     src = args[0]
     dest = args[1]
+    output_obj = Output()
 
     report.write_log(f"Copying {src} to {dest}\n")
 
@@ -33,11 +35,13 @@ def copy_file(args:list,options:list):
     
     # Handling Exception
     except Exception as e:
-        print(e)
+        print(e,file=output_obj)
         report.write_log(e.__str__()+"\n")
     else:
-      report.write_log("Copied Successfully\n")
-      print("Copied")
+      print("Copied Successfully",file=output_obj)
+      report.write_log(output_obj.__str__())
+    
+    return output_obj
 
 
 

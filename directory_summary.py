@@ -1,7 +1,7 @@
 import os
 import exceptions
 from report_gen import Report_Gen
-
+from helpers.collections.output import Output
 report = Report_Gen()
 
 class Dir_Summary:
@@ -40,11 +40,14 @@ class Dir_Summary:
                 raise exceptions.NotADirectoryPath(path=path)
             
             # Print pattern for appealing visual summary
-            for i in range(self.child_number*2):
-                print(" ",end="")
+            # Using custom output object/data structure
+            output_obj = Output()
 
-            print("|__",end="")
-            print(os.path.basename(path))
+            spaces_outer = " "*self.child_number*2
+
+            reference_line_outer = spaces_outer+"|__"
+
+            print(reference_line_outer + os.path.basename(path),file=output_obj)
             
             # Iterate through the directory
             for name in os.listdir(path):
@@ -54,26 +57,25 @@ class Dir_Summary:
                 # Check File or Directory
                 if os.path.isfile(full_path):
 
-                    for i in range(self.child_number*2):
-                       print(" ",end="")
+                    spaces_inner = " "*self.child_number*2
 
-                    print("|__",end="")
-                    print(name)
+                    reference_line_inner = spaces_inner+"|__"
+                    print(reference_line_inner + name,file=output_obj)
 
                 else:
                     # If recursive is true then go inside the directory otherwise print the directory
                     if recursive:
-                       self.dir_summary([full_path],options) # we passed a list since the function accepts the list
-
+                       result = self.dir_summary([full_path],options) # we passed a list since the function accepts the list
+                       output_obj.write(result.__str__())
                     else:
-                        for i in range(self.child_number*2):
-                          print(" ",end="")
-
-                        print("|__",end="")
-                        print(name)
+                       spaces_inner = " "*self.child_number*2
+   
+                       reference_line_inner = spaces_inner+"|__"
+                       print(reference_line_inner + name,file=output_obj)
 
                 self.child_number -=1
                 # Back Tracking of child number
+            return output_obj
 
         except Exception as e:
              print(e)

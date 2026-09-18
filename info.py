@@ -3,10 +3,11 @@ import os
 import exceptions
 from datetime import datetime
 from report_gen import Report_Gen
+from helpers.collections.output import Output
 
 report = Report_Gen()
 
-def file_info(args:list,options:list):
+def file_info(args:list=[],options:list=[]):
     """
     This function will print the information of file 
     Path of file, Size of file, Time of Creation , Time of modification, Time of last accessed
@@ -48,18 +49,23 @@ def file_info(args:list,options:list):
         if not file_path:
             raise exceptions.ExactFileNotExist(file,result)
         
+    
         info = os.stat(file_path)
-
+        
+        # Using custom output data structure
+        output_obj = Output()
         # print the Information of the file
-        print("Path: ",file_path)
-        print("Size: ",info.st_size," bytes")
-        print("Created: ",datetime.fromtimestamp(info.st_ctime))
-        print("Modified: ",datetime.fromtimestamp(info.st_mtime))
-        print("Accessed: ",datetime.fromtimestamp(info.st_atime))
+        print("Path: ",file_path,file=output_obj)
+        print("Size: ",info.st_size," bytes",file=output_obj)
+        print("Created: ",datetime.fromtimestamp(info.st_ctime),file=output_obj)
+        print("Modified: ",datetime.fromtimestamp(info.st_mtime),file=output_obj)
+        print("Accessed: ",datetime.fromtimestamp(info.st_atime),file=output_obj)
 
         # Write information into logs
-        report.write_log(f"File information is:\nPath:{file_path}\nSize:{info.st_size} bytes\nCreated:{datetime.fromtimestamp(info.st_ctime)}\nModified:{datetime.fromtimestamp(info.st_mtime)}\nAccessed:{datetime.fromtimestamp(info.st_atime)}\n")
-
+        report.write_log(f"File Information successfully Fetched\n")
+        
+        return output_obj
+    
     except Exception as e:
         print(e)
         report.write_log(e.__str__()+"\n")
@@ -68,5 +74,6 @@ def file_info(args:list,options:list):
 
 
 if __name__ == "__main__":
-   file_info("test.txt")
+   result = file_info(args=["test.txt",])
+   print(result)
 

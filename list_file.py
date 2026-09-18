@@ -1,7 +1,7 @@
 import os
 import exceptions
 from report_gen import Report_Gen
-
+from helpers.collections.output import Output
 report = Report_Gen()
  
 
@@ -43,12 +43,16 @@ def list_files(args:list=[],options:list=[]):
               files.append(name)
 
       # Print the listed files
-      print(f"{len(files)} files present in {path}")
+      # Using custom output data structure
+      output_obj = Output()
+      print(f"{len(files)} files present in {path}",file=output_obj)
 
       for i in range(len(files)):
-          print(i+1," ",files[i])
+          print(i+1," ",files[i],file=output_obj)
 
-      return files
+      report.write_log("Files are listed successfully\n")
+
+      return output_obj
     
     except Exception as e:
         print(e)
