@@ -147,6 +147,7 @@ while(True):
         tool_name = response_json["tool_name"]
         tool_fn = getattr(file_client,tool_name)
         result = tool_fn(response_json["arguments"])
+        print("Tool result:",result)
         context +=  f"{tool_name} tool result:{str(result)} "
 
 
