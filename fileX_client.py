@@ -4,6 +4,7 @@ import info as info_module
 import search_file as search_file_module
 import copy_file as copy_file_module
 import rename_file as rename_file_module
+from read_write_append import read_file as read_file_fn,write_file as write_file_fn,append_file as append_file_fn
 import report_gen  as report_gen_module
 import exceptions
 import fileX 
@@ -42,6 +43,21 @@ class FileXClient():
             "arguments_desc": "takes source path as first argument and destination path as second argument"
          },
          {
+            "tool_name": "read_file",
+            "tool_description": "Read the contents of a file.",
+            "arguments_desc": "takes the relative path of file as argument"
+         },
+         {
+            "tool_name": "write_file",
+            "tool_description": "write content to a file",
+            "arguments_desc": "Take file relative or absolute path as first argument and content as second argument"
+         },
+         {
+            "tool_name": "append_file",
+            "tool_description": "It will append data to a file",
+            "arguments_desc": "Take file relative or absolute path as first argument and content as second argument"
+         },
+         {
               "tool_name": "get_current_working_directory",
               "tool_description": "it will return the current working directory path",
               "arguments_desc" : "takes no arguments"
@@ -78,6 +94,21 @@ class FileXClient():
       def rename_file(self,args):
            arguments,options = fileX.arg_and_opt(args)
            result = rename_file_module.rename_file(arguments,options)
+           return str(result)
+      
+      def read_file(self,args):
+           arguments,options = fileX.arg_and_opt(args)
+           result = read_file_fn(arguments,options)
+           return str(result)
+      
+      def write_file(self,args):
+           arguments,options = fileX.arg_and_opt(args)
+           result = write_file_fn(arguments,options)
+           return str(result)
+      
+      def append_file(self,args):
+           arguments,options = fileX.arg_and_opt(args)
+           result = append_file_fn(arguments,options)
            return str(result)
       
       def get_current_working_directory(self,args):
