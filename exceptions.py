@@ -36,7 +36,7 @@ class NotADirectoryPath(Exception):
           super().__init__(*args)
           self.path = path
      def __str__(self):
-          return f"This path is not a directory path {self.path}.\nPlase provide relative or absolute path of directory"
+          return f"This path is not a directory path {self.path}.\nPlease provide relative or absolute path of directory"
 
 class InvalidCommand(Exception):
      def __init__(self,command,*args):

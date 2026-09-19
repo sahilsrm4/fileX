@@ -18,7 +18,7 @@ For using the tool you have to run this file
 ls_file = list_file.list_files
 dir_summary = directory_summary.Dir_Summary().dir_summary
 file_info = info.file_info
-search_f = search_file.search_print_file
+search_f = search_file.search_file
 copy_f = copy_file.copy_file
 rename_f = rename_file.rename_file
 

@@ -29,7 +29,7 @@ class FileXClient():
          {
             "tool_name": "search_file",
              "tool_description": "It will search file in the directory",
-             "arguments_desc": "takes file name or matching keyword, if -r or --recursive given search in parent directories also"
+             "arguments_desc": "takes file name or matching keyword, if -r or --recursive given search in parent directories also, it don't parse the * , it don't know that * means anything"
          },
          {
             "tool_name": "copy_file",
@@ -48,38 +48,39 @@ class FileXClient():
          }
       ]
 
-      def list_file(*args):
+      def list_file(self,args):
          arguments,options = fileX.arg_and_opt(args)
          files = list_file_module.list_files(arguments,options)
          return files
      
-      def directory_summary(*args):
+      def directory_summary(self,args):
            arguments,options = fileX.arg_and_opt(args)
            # we have to find a way to store the pattern into a data structure which can be printed directly and can be shared 
            result = directory_summary_module.Dir_Summary().dir_summary(arguments,options)
            return str(result)
       
-      def file_info(*args):
+      def file_info(self,args):
            arguments,options = fileX.arg_and_opt(args)
            result =  info_module.file_info(arguments,options)
            return str(result)
      
-      def search_file(*args):
+      def search_file(self,args):
+           print(args)
            arguments,options = fileX.arg_and_opt(args)
            result = search_file_module.search_file(arguments,options)
            return str(result)
       
-      def copy_file(*args):
+      def copy_file(self,args):
            arguments,options = fileX.arg_and_opt(args)
            result = copy_file_module.copy_file(arguments,options)
            return str(result)
       
-      def rename_file(*args):
+      def rename_file(self,args):
            arguments,options = fileX.arg_and_opt(args)
            result = rename_file_module.rename_file(arguments,options)
            return str(result)
       
-      def get_current_working_directory(*args):
+      def get_current_working_directory(self,args):
            return os.getcwd()
       
       @classmethod
