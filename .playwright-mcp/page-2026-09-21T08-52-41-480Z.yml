@@ -1,0 +1,33 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic:
+      - generic:
+        - main:
+          - generic:
+            - generic: Need help?
+            - generic:
+              - textbox "Email or Phone Number"
+            - generic:
+              - paragraph: New to 1doc?
+              - paragraph: Download the app and create your verified 1doc iD.
+            - paragraph: "Use 1doc iD for Login: Your 1doc iD serves as your secure authentication and access account across the 1doc ecosystem. Account information may be used to deliver security alerts, critical service updates and operational communications related to your use of 1doc services."
+            - button "Continue"
+            - button "Sign in with Passkey"
+        - contentinfo:
+          - generic:
+            - generic:
+              - paragraph: Copyright © 2019-2026 1doc. All rights reserved.
+            - paragraph: Terms & Conditions, Privacy Policy,See all Policies
+    - main [ref=e6]:
+      - generic [ref=e7]:
+        - generic [ref=e14]:
+          - heading "Upgrading • Improving • Evolving" [level=2] [ref=e18]
+          - paragraph [ref=e19]: We'll be back soon.
+        - generic [ref=e20]:
+          - paragraph [ref=e21]: Need assistance?
+          - paragraph [ref=e22]:
+            - text: Contact us at
+            - link "support@1doc.in" [ref=e23] [cursor=pointer]:
+              - /url: mailto:support@1doc.in
+        - paragraph [ref=e25]: Copyright © 2026 1doc. All rights reserved.
+  - alert [ref=e26]
