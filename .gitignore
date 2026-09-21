@@ -13,3 +13,5 @@ os_module_basic.ipynb
 file_tool.spec
 fileX.spec
 experiments/
+.pytest_cache/
+.playwright-mcp/
