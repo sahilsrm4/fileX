@@ -15,3 +15,6 @@ fileX.spec
 experiments/
 .pytest_cache/
 .playwright-mcp/
+pypilot/
+pypilot_gemini/
+assests/
