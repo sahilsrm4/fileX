@@ -37,14 +37,10 @@ IMPORTANT RULES:
 2. Never return multiple JSON objects in the same response.
 3. Never return a tool call and a message together.
 4. When a tool is required, return ONLY the tool_call JSON object.
-5. After returning a tool_call, STOP and wait for the tool result.
-6. Do not assume or invent the result of a tool call.
-7. After the tool result is provided, decide what to do next.
-8. If another tool is required, return ONLY the next tool_call JSON object.
-9. If no more tools are required, return ONLY a message JSON object.
-10. The arguments field must always be a JSON array, even when there is only one argument.
-11. Use the exact tool name provided in the available tools.
-12. Do not put Markdown, explanations, code fences, or additional text outside the JSON object.
+5. If no more tools are required, return ONLY a message JSON object.
+6. The arguments field must always be a JSON array, even when there is only one argument.
+7. Use the exact tool name provided in the available tools.
+8. Do not put Markdown, explanations, code fences, or additional text outside the JSON object.
 
 Example:
 
@@ -120,16 +116,18 @@ while(True):
      final_prompt = f"{protocol}\n{tool_discrption}\n {context}"
      if tool_call > 10:
       break
-   #   response = gemini_ai_client.models.generate_content(
-   #      model= "gemini-3.7-flash",
-   #      contents=  final_prompt
-   #   )
      
-     response = openai_ai_client.responses.create(
-             model="gpt-5.6-luna",
-             input = final_prompt
-            )
-     response_text = response.output_text
+     response = gemini_ai_client.models.generate_content(
+        model= "gemini-3.5-flash",
+        contents=  final_prompt
+     )
+     response_text = response.text
+     
+    #  response = openai_ai_client.responses.create(
+    #          model="gpt-6-astra",
+    #          input = final_prompt
+    #         )
+    #  response_text = response.output_text
      print(response_text)
      response_json = json.loads(response_text)
     

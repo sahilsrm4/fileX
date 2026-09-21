@@ -4,11 +4,14 @@ import info as info_module
 import search_file as search_file_module
 import copy_file as copy_file_module
 import rename_file as rename_file_module
+import create_directory as create_directory_module
 from read_write_append import read_file as read_file_fn, write_file as write_file_fn, append_file as append_file_fn
 import exceptions
 import fileX
 import os
 import subprocess
+
+from playwright.sync_api import Playwright,Page,sync_playwright
 
 
 class FileXClient:
@@ -21,7 +24,7 @@ class FileXClient:
         {
             "tool_name": "directory_summary",
             "tool_description": "It will give directory/folder structure",
-            "arguments_desc": "takes directory path if not provided uses current working directory path by default, if -r or --recursive given, it will go into child directory also and generate the full directory summary"
+            "arguments_desc": "takes directory absolute path ,if not provided uses current working directory path by default, if -r or --recursive given, it will go into child directory also and generate the full directory summary"
         },
         {
             "tool_name": "file_info",
@@ -44,6 +47,11 @@ class FileXClient:
             "arguments_desc": "takes source path as first argument and destination path as second argument"
         },
         {
+            "tool_name": "create_directory",
+            "tool_description": "Create a directory",
+            "arguments_desc": "Takes directory name as the first argument and an optional destination path as the second argument; uses the current directory if no path is provided"
+        },
+        {
             "tool_name": "read_file",
             "tool_description": "Read the contents of a file.",
             "arguments_desc": "takes the relative path of file as argument"
@@ -63,11 +71,20 @@ class FileXClient:
             "tool_description": "it will return the current working directory path",
             "arguments_desc": "takes no arguments"
         },
+        # CommandRunner
         {
             "tool_name": "rerun_command",
             "tool_description": "Run a system command and return its output",
             "arguments_desc": "Takes the command and its arguments as a list of values"
+        },
+
+        # WebClient
+        {
+         "tool_name": "inspect_webpage",
+         "tool_description": "Open a website in a browser and return information about the rendered webpage for analysis and test generation like dom of the page",
+         "arguments_desc": "Takes the webpage URL as a string"
         }
+       
     ]
 
     def list_file(self, args):
@@ -99,6 +116,11 @@ class FileXClient:
         result = rename_file_module.rename_file(arguments, options)
         return str(result)
 
+    def create_directory(self, args):
+        arguments, options = fileX.arg_and_opt(args)
+        result = create_directory_module.create_directory(arguments, options)
+        return str(result)
+
     def read_file(self, args):
         arguments, options = fileX.arg_and_opt(args)
         result = read_file_fn(arguments, options)
@@ -116,7 +138,8 @@ class FileXClient:
 
     def get_current_working_directory(self, args):
         return os.getcwd()
-
+    
+    # codeRunner
     def rerun_command(self, args):
         """Execute a command in a visible Windows terminal window."""
         arguments, options = fileX.arg_and_opt(args)
@@ -141,7 +164,34 @@ class FileXClient:
             return f"Error: command not found: {arguments[0]}"
         except OSError as error:
             return f"Error running command: {error}"
-
+    
+    # webCleint
+    def inspect_webpage(self,args):
+      url = args[0]
+    
+      # Open a sync playwright context manager
+      with sync_playwright() as p:
+          # Launch a headless browser instance
+          browser = p.chromium.launch(headless=True)
+          # Create a new page instance correctly
+          page = browser.new_page()
+          
+          # Navigate to the URL
+          page.goto(url)
+  
+          # Collect the results before the browser closes
+          result = {
+              "url": page.url,
+              "title": page.title(),
+              "dom": page.content(),
+              # "elements": extract_elements(page) # Uncomment if you use this helper
+          }
+          
+          # Clean up browser processes
+          browser.close()
+          
+      return result
+    
     @classmethod
     def get_tool_desc(cls):
         return cls.__tool_list
