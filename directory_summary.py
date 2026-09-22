@@ -7,7 +7,10 @@ report = Report_Gen()
 class Dir_Summary:
    
    # Child number is used to keep track of the directory when recursion happens
+   
+   # Child number is used to keep track of the directory when recursion happens
    child_number = 0
+
 
    def dir_summary(self,args:list=[],options:list=[]) :
         """
@@ -18,19 +21,25 @@ class Dir_Summary:
         recursive = False
         
         # Prase arguments
+        
+        # Prase arguments
 
         if(len(args)==0):
             path = os.getcwd()
         else:
             path = args[0]
 
+
         try:
+            # Parse option
             # Parse option
             if options:
                 if options[0] == "-r" or options[0] == "--recursive":
                    recursive = True
                 else:
                     raise exceptions.NotSupportedOption("Directory Summary",options[0])
+            
+            # Check Path 
             
             # Check Path 
             if not os.path.exists(path):
@@ -55,6 +64,7 @@ class Dir_Summary:
                 full_path = os.path.join(path,name)
                 
                 # Check File or Directory
+                # Check File or Directory
                 if os.path.isfile(full_path):
 
                     spaces_inner = " "*self.child_number*2
@@ -63,6 +73,7 @@ class Dir_Summary:
                     print(reference_line_inner + name,file=output_obj)
 
                 else:
+                    # If recursive is true then go inside the directory otherwise print the directory
                     # If recursive is true then go inside the directory otherwise print the directory
                     if recursive:
                        result = self.dir_summary([full_path],options) # we passed a list since the function accepts the list

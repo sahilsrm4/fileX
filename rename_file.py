@@ -9,12 +9,17 @@ def rename_file(args:list=[],options:list=[]):
    """
    This function will rename source file into provided destiantion name
    """
+def rename_file(args:list=[],options:list=[]):
+   """
+   This function will rename source file into provided destiantion name
+   """
    src = args[0]
    dest = args[1]
    output_obj = Output()
    try:
       report.write_log(f"Renaming {src} to {dest}\n")
       
+      # Path validation
       # Path validation
       if not os.path.exists(src):
           raise exceptions.SourcePathNotExist(src)

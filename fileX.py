@@ -15,6 +15,13 @@ For using the tool you have to run this file
 """
 
 # Store every function into a variable
+"""
+This is the main file which will be used to run the tool
+For using the tool you have to run this file
+
+"""
+
+# Store every function into a variable
 ls_file = list_file.list_files
 dir_summary = directory_summary.Dir_Summary().dir_summary
 file_info = info.file_info
@@ -23,7 +30,12 @@ copy_f = copy_file.copy_file
 rename_f = rename_file.rename_file
 
 
+
 def help(args:list = [],options:list=[]):
+    """
+    This function is to give the discription of all the commands to the user
+    
+    """
     """
     This function is to give the discription of all the commands to the user
     
@@ -75,12 +87,19 @@ def arg_and_opt(args:list|None):
       This function is used to parse the command line argument , It will seprate the arguments and options
 
    """
+   """
+      This function is used to parse the command line argument , It will seprate the arguments and options
+
+   """
    arguments = list()
    options = list()
    
    # if no arguments are given in command line then return the empty objects
+   
+   # if no arguments are given in command line then return the empty objects
    if not args:
       return arguments,options
+   
    
    for arg in args:
       if arg.startswith("-") or arg.startswith("--"):
@@ -92,7 +111,11 @@ def arg_and_opt(args:list|None):
 
 
 # this dictionary will be used for command mapping with functionality and arguments it require
+
+# this dictionary will be used for command mapping with functionality and arguments it require
 command_to_fun = dict()
+
+
 
 
 # the list will contain at 0th index the function mapped to command ,at 1st index number of arg , 2nd index number of argument also possible 
@@ -108,12 +131,17 @@ command_to_fun["help"] = [help,0,0]
 
 if __name__ == "__main__":
 
+
    report = report_gen.Report_Gen()
+
 
    try:
        # Handle the command
+       # Handle the command
        if(len(sys.argv)==1):
           raise exceptions.NoCommand
+       
+       # Handle the arguments
        
        # Handle the arguments
        try:
@@ -129,12 +157,16 @@ if __name__ == "__main__":
           sys.exit()
     
       # map the functinality
+      # map the functinality
        fn = ls[0]
+      
+      # separate the arguments and options
       
       # separate the arguments and options
        arguments,options = arg_and_opt(sys.argv[2:])
        number_of_arg = len(arguments)
        
+      # validate Number of arguments
       # validate Number of arguments
        if(ls[1] == number_of_arg or ls[2] == number_of_arg):
             report.write_log(f"Calling the functionality {fn.__name__}\n")
@@ -151,6 +183,8 @@ if __name__ == "__main__":
           else:
             print(f"{sys.argv[1]} functionality require either {ls[1]} or {ls[2]} args")
             report.write_log(f"{sys.argv[1]} functionality require either {ls[1]} or {ls[2]} args but {len(sys.argv[2:])} is provided")
+   
+   # Handle the exception
    
    # Handle the exception
    except exceptions.NoCommand as e:

@@ -17,7 +17,9 @@ def file_info(args:list=[],options:list=[]):
     file = None
     path = None
 
+
     try:
+        # Parse The arguments
         # Parse The arguments
         if(len(args)==1):
             file=args[0]
@@ -34,16 +36,24 @@ def file_info(args:list=[],options:list=[]):
         result = search_file.search_file([file,path],['-r'])
         
         # if result len is 0 means no result found 
+        # use search_file function to find the exact path of the file
+        result = search_file.search_file([file,path],['-r'])
+        
+        # if result len is 0 means no result found 
         if not len(result):
              raise exceptions.FileNotExist(file)
         
         file_path = None
         
         # Search into result list to find the exact match because search_file function also return related or partial matching result
+        
+        # Search into result list to find the exact match because search_file function also return related or partial matching result
         for f in result:
             filename = os.path.basename(f)
             if file == filename:
                 file_path = f
+
+        # if no exact file exist we raise error
 
         # if no exact file exist we raise error
         if not file_path:

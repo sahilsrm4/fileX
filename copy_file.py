@@ -11,6 +11,10 @@ def copy_file(args:list,options:list):
     This funciton will copy file from source path to destination path
     
     """
+    """
+    This funciton will copy file from source path to destination path
+    
+    """
     src = args[0]
     dest = args[1]
     output_obj = Output()
@@ -18,6 +22,7 @@ def copy_file(args:list,options:list):
     report.write_log(f"Copying {src} to {dest}\n")
 
     try:
+      # Source and destination path validation
       # Source and destination path validation
       if not os.path.exists(src):
          raise exceptions.SourcePathNotExist(src)
@@ -32,6 +37,8 @@ def copy_file(args:list,options:list):
          raise exceptions.NotADirectoryPath(dest)
       
       shutil.copy(src=src,dst=dest)
+    
+    # Handling Exception
     
     # Handling Exception
     except Exception as e:
