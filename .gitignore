@@ -17,6 +17,7 @@ experiments/
 .playwright-mcp/
 pypilot/
 pypilot_gemini/
-assests/
+assets/
 playwright-mcp
 tests/
+.playwright-mcp
