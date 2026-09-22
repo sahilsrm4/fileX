@@ -18,3 +18,5 @@ experiments/
 pypilot/
 pypilot_gemini/
 assests/
+playwright-mcp
+tests/
