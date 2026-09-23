@@ -844,16 +844,27 @@ Return exactly one JSON object.
                             if tool_name in file_client.get_critical_fn():
                                 user_confirmation = input(f"Agent want to run tool {tool_name} type (y/n)")
                             
-                            if user_confirmation == 'n' or user_confirmation == "N":
-                                result_text = f"User didn't give the permission to run tool {tool_name}"
-                            elif user_confirmation=="y" or user_confirmation=="Y":
-                               result = tool_fn(
-                                   arguments
-                               )
-   
-                               result_text = str(
-                                   result
-                               )
+                                if user_confirmation == 'n' or user_confirmation == "N":
+                                    result_text = f"User didn't give the permission to run tool {tool_name}"
+                                elif user_confirmation=="y" or user_confirmation=="Y":
+                                   result = tool_fn(
+                                       arguments
+                                   )
+       
+                                   result_text = str(
+                                       result
+                                   )
+                                else:
+                                    result_text = f"User didn't gave the permission to execute tool {tool_name}"
+                            else:
+                                result = tool_fn(
+                                       arguments
+                                   )
+       
+                                result_text = str(
+                                       result
+                                   )
+
 
                         except Exception as e:
 
