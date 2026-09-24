@@ -1,0 +1,130 @@
+project:
+  name: "Choose yourself"
+  language: "python"
+  test_framework: "pytest"
+  ui_framework: "playwright"
+  api_framework: "requests"
+  
+folder_structure:
+  tests:
+    purpose: "Contains executable test cases"
+    
+  tests/ui:
+    purpose: "UI and browser automation tests"
+    
+  tests/api:
+    purpose: "API test cases"
+    
+  tests/integration:
+    purpose: "End-to-end and integration scenarios"
+    
+  pages:
+    purpose: "Page Object Model classes"
+    
+  data:
+    purpose: "Test data and API payloads"
+    
+  utils:
+    purpose: "Reusable utilities and helpers"
+    
+  config:
+    purpose: "Environment and framework configuration"
+    
+  reports:
+    purpose: "Generated test reports"
+    
+  screenshots:
+    purpose: "Screenshots captured during failures"
+
+rules:
+
+  test_naming:
+    test_files: "test_<feature>.py"
+    test_functions: "test_<scenario>"
+    page_objects: "<page_name>_page.py"
+
+  test_design:
+    - "Each test should validate one clear behavior."
+    - "Tests should be independent."
+    - "Avoid unnecessary test dependencies."
+    - "Use meaningful test names."
+    - "Use assertions to validate expected behavior."
+    - "Do not hardcode environment-specific values."
+
+  playwright:
+    - "Use Page Object Model for reusable page interactions."
+    - "Prefer stable locators."
+    - "Prefer get_by_role, get_by_label and get_by_test_id."
+    - "Avoid fragile XPath selectors when possible."
+    - "Do not use fixed sleep unless absolutely necessary."
+    - "Use Playwright auto-waiting."
+    - "Capture screenshots on failure."
+
+  pytest:
+    - "Use fixtures for reusable setup and teardown."
+    - "Use conftest.py for shared fixtures."
+    - "Use parametrization for data-driven tests."
+    - "Keep test logic inside test files."
+    - "Keep reusable actions inside page objects or utilities."
+
+  api:
+    - "Keep API clients separate from test cases."
+    - "Store reusable payloads in data/payloads."
+    - "Validate status codes."
+    - "Validate important response fields."
+    - "Test positive and negative scenarios."
+
+  test_data:
+    - "Do not hardcode credentials in test files."
+    - "Keep reusable test data under data/test_data."
+    - "Keep API payloads under data/payloads."
+    - "Use environment variables for secrets."
+
+  reporting:
+    - "Generate reports under reports/."
+    - "Store execution logs under logs/."
+    - "Store failure screenshots under screenshots/."
+
+  code_quality:
+    - "Avoid duplicated code."
+    - "Use descriptive variable names."
+    - "Keep functions small and focused."
+    - "Follow PEP8."
+    - "Do not create unnecessary abstractions."
+
+  security:
+    - "Never store passwords or API keys in source code."
+    - "Never commit secrets."
+    - "Use environment variables for sensitive values."
+    - "Do not expose authentication tokens in logs."
+
+agent_behavior:
+
+  before_creating_files:
+    - "Inspect the existing project structure."
+    - "Reuse existing utilities and page objects."
+    - "Do not create duplicate files unnecessarily."
+
+  before_creating_tests:
+    - "Understand the feature implementation."
+    - "Identify relevant UI/API components."
+    - "Identify existing tests."
+    - "Reuse existing fixtures."
+    - "Identify available test data."
+
+  after_creating_tests:
+    - "Run the generated tests."
+    - "Analyze failures."
+    - "Fix generated tests when appropriate."
+    - "Re-run failed tests."
+    - "Do not modify application source code without explicit approval."
+
+  folder_rules:
+    - "Follow the defined project structure."
+    - "Do not create random folders."
+    - "Place each file in the directory matching its responsibility."
+
+execution:
+  command_timeout: 120
+  max_test_retries: 2
+  screenshot_on_failure: true

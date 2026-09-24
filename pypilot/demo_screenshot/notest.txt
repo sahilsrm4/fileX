@@ -1,0 +1,2 @@
+the output returned by the model is structured using reponse parsing by ai application or website
+like # converted to hading ` ` converted to bold and other patterns since same we see in our response
