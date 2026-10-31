@@ -15,9 +15,7 @@ sys.path.append(r"D:\WatchGuard\command-line-file-utility")
 
 from fileX_client import FileXClient
 
-# ============================================================
 # CONFIGURATION
-# ============================================================
 
 MCP_URL = "http://localhost:8931/mcp"
 
@@ -25,24 +23,18 @@ GEMINI_KEY = os.environ.get("gimini_api_key")
 OPENAI_API_KEY = os.environ.get("openai_api_key")
 
 
-# ============================================================
 # LLM CLIENTS
-# ============================================================
 
 gemini_ai_client = genai.Client(api_key=GEMINI_KEY)
 openai_ai_client = OpenAI(api_key=OPENAI_API_KEY)
 
 
-# ============================================================
 # FILEX CLIENT
-# ============================================================
 
 file_client = FileXClient()
 
 
-# ============================================================
 # RESPONSE PROTOCOL
-# ============================================================
 with open("pypilot_rules_and_protocols/response_protocol.txt","r") as f:
 
    RESPONSE_PROTOCOL =  f.read()
@@ -50,9 +42,7 @@ with open("pypilot_rules_and_protocols/response_protocol.txt","r") as f:
  
 
 
-# ============================================================
 # PERSISTENT MCP CLIENT
-# ============================================================
 
 class PersistentMCPClient:
     """
@@ -76,9 +66,7 @@ class PersistentMCPClient:
 
         self._start_worker()
 
-    # --------------------------------------------------------
     # START WORKER
-    # --------------------------------------------------------
 
     def _start_worker(self):
 
@@ -97,9 +85,7 @@ class PersistentMCPClient:
                 f"Failed to start MCP client: {self.startup_error}"
             )
 
-    # --------------------------------------------------------
     # WORKER THREAD
-    # --------------------------------------------------------
 
     def _run_worker(self):
 
@@ -122,9 +108,7 @@ class PersistentMCPClient:
 
             self.loop.close()
 
-    # --------------------------------------------------------
     # MCP WORKER
-    # --------------------------------------------------------
 
     async def _mcp_worker(self):
 
@@ -141,17 +125,13 @@ class PersistentMCPClient:
 
                     self.session = session
 
-                    # ----------------------------------------
                     # INITIALIZE MCP SESSION
-                    # ----------------------------------------
 
                     await session.initialize()
 
                     print("\n[MCP] Session initialized")
 
-                    # ----------------------------------------
                     # LOAD MCP TOOLS
-                    # ----------------------------------------
 
                     result = await session.list_tools()
 
@@ -163,9 +143,7 @@ class PersistentMCPClient:
 
                     self.ready.set()
 
-                    # ----------------------------------------
                     # KEEP SESSION ALIVE
-                    # ----------------------------------------
                     #
                     # This is extremely important.
                     #
@@ -186,17 +164,13 @@ class PersistentMCPClient:
                 f"\n[MCP] Worker terminated: {e}"
             )
 
-    # --------------------------------------------------------
     # GET TOOLS
-    # --------------------------------------------------------
 
     def get_tools(self):
 
         return self.mcp_tools
 
-    # --------------------------------------------------------
     # CALL MCP TOOL
-    # --------------------------------------------------------
 
     def call_tool(
         self,
@@ -230,9 +204,7 @@ class PersistentMCPClient:
 
         return future.result()
 
-    # --------------------------------------------------------
     # ASYNC TOOL CALL
-    # --------------------------------------------------------
 
     async def _call_tool_async(
         self,
@@ -255,9 +227,7 @@ class PersistentMCPClient:
 
         return result
 
-    # --------------------------------------------------------
     # CLOSE
-    # --------------------------------------------------------
 
     def close(self):
 
@@ -276,9 +246,7 @@ class PersistentMCPClient:
             )
 
 
-# ============================================================
 # MCP TOOL HELPERS
-# ============================================================
 
 def get_mcp_tool(
     mcp_tools,
@@ -316,9 +284,7 @@ def parse_mcp_arguments(
         []
     )
 
-    # --------------------------------------------------------
     # NO ARGUMENT MCP TOOL
-    # --------------------------------------------------------
 
     if not properties:
 
@@ -330,9 +296,7 @@ def parse_mcp_arguments(
             f"accept arguments"
         )
 
-    # --------------------------------------------------------
     # PARAMETERIZED MCP TOOL
-    # --------------------------------------------------------
 
     if len(arguments) != 1:
 
@@ -353,9 +317,7 @@ def parse_mcp_arguments(
             f"must contain a dictionary"
         )
 
-    # --------------------------------------------------------
     # REQUIRED PARAMETERS
-    # --------------------------------------------------------
 
     missing_parameters = [
         parameter
@@ -370,9 +332,7 @@ def parse_mcp_arguments(
             f"{missing_parameters}"
         )
 
-    # --------------------------------------------------------
     # UNKNOWN PARAMETERS
-    # --------------------------------------------------------
 
     invalid_parameters = [
         parameter
@@ -390,9 +350,7 @@ def parse_mcp_arguments(
     return mcp_arguments
 
 
-# ============================================================
 # MCP TOOL DESCRIPTION
-# ============================================================
 
 def get_mcp_tool_description(
     mcp_tools
@@ -413,9 +371,7 @@ def get_mcp_tool_description(
     return descriptions
 
 
-# ============================================================
 # EXECUTE MCP TOOL
-# ============================================================
 
 def execute_mcp_tool(
     mcp_client,
@@ -469,9 +425,7 @@ def execute_mcp_tool(
     return result
 
 
-# ============================================================
 # CONVERT MCP RESULT
-# ============================================================
 
 def convert_result_to_text(result):
 
@@ -504,9 +458,7 @@ def convert_result_to_text(result):
         return str(result)
 
 
-# ============================================================
 # MAIN APPLICATION
-# ============================================================
 
 def main():
 
@@ -514,9 +466,7 @@ def main():
         "\nStarting persistent Playwright MCP client..."
     )
 
-    # --------------------------------------------------------
     # START MCP CLIENT ONCE
-    # --------------------------------------------------------
 
     mcp_client = PersistentMCPClient(
         MCP_URL
@@ -526,9 +476,7 @@ def main():
         "\nPlaywright MCP connected."
     )
 
-    # --------------------------------------------------------
     # MCP TOOLS
-    # --------------------------------------------------------
 
     mcp_tools = mcp_client.get_tools()
 
@@ -542,9 +490,7 @@ def main():
         f"{len(mcp_tools)}"
     )
 
-    # --------------------------------------------------------
     # TOOL DESCRIPTIONS
-    # --------------------------------------------------------
 
     filex_tools = file_client.get_tool_desc()
 
@@ -569,9 +515,7 @@ def main():
         "\nAgent ready."
     )
 
-    # --------------------------------------------------------
     # USER LOOP
-    # --------------------------------------------------------
 
     try:
 
@@ -596,9 +540,7 @@ Available tools:
 {tools_text}
 """
 
-            # ------------------------------------------------
             # AGENT LOOP
-            # ------------------------------------------------
 
             while True:
 
@@ -622,9 +564,7 @@ Return exactly one JSON object.
                     f"{raw_response}"
                 )
 
-                # --------------------------------------------
                 # PARSE MODEL RESPONSE
-                # --------------------------------------------
 
                 try:
 
@@ -644,9 +584,7 @@ Return exactly one JSON object.
                     "type"
                 )
 
-                # --------------------------------------------
                 # MESSAGE
-                # --------------------------------------------
 
                 if response_type == "message":
 
@@ -661,9 +599,7 @@ Return exactly one JSON object.
 
                     break
 
-                # --------------------------------------------
                 # TOOL CALL
-                # --------------------------------------------
 
                 if response_type != "tool_call":
 
@@ -692,9 +628,7 @@ Return exactly one JSON object.
                     f"{arguments}"
                 )
 
-                # --------------------------------------------
                 # MCP TOOL
-                # --------------------------------------------
 
                 if tool_name in mcp_tool_names:
 
@@ -724,9 +658,7 @@ Return exactly one JSON object.
 
                         print(e)
 
-                        # ------------------------------------
                         # DO NOT BLINDLY RETRY A DEAD SESSION
-                        # ------------------------------------
 
                         if "Session terminated" in str(e):
 
@@ -740,9 +672,7 @@ Return exactly one JSON object.
 
                             break
 
-                # --------------------------------------------
                 # FILEX TOOL
-                # --------------------------------------------
 
                 else:
 
@@ -794,9 +724,7 @@ Return exactly one JSON object.
                                 f"ERROR: {e}"
                             )
 
-                # --------------------------------------------
                 # ADD TOOL RESULT TO CONTEXT
-                # --------------------------------------------
 
                 context += f"""
 
@@ -817,9 +745,7 @@ Tool result:
 
     finally:
 
-        # ----------------------------------------------------
         # CLOSE MCP ONLY WHEN APPLICATION EXITS
-        # ----------------------------------------------------
 
         mcp_client.close()
 
@@ -828,9 +754,7 @@ Tool result:
         )
 
 
-# ============================================================
 # ENTRY POINT
-# ============================================================
 
 if __name__ == "__main__":
     main()
